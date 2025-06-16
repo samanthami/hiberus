@@ -1,0 +1,44 @@
+drop table if exists department cascade;
+drop table if exists employee cascade;
+CREATE TABLE DEPARTMENT(
+    DEPARTMENT_ID INTEGER GENERATED ALWAYS AS IDENTITY,
+    DEPARTMENT_NAME VARCHAR(50) NOT NULL,
+    STATUS CHAR(1) NOT NULL CHECK (STATUS IN ('A', 'I'))
+);
+
+ALTER TABLE DEPARTMENT
+    ADD CONSTRAINT PK_ID_DEPARTMEN PRIMARY KEY (DEPARTMENT_ID);
+
+CREATE TABLE EMPLOYEE(
+    EMPLOYEE_ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY ,
+    EMPLOYEE_NAME VARCHAR(250) NOT NULL,
+    EMPLOYEE_LAST_NAME VARCHAR(250) NOT NULL,
+    AGE INTEGER NOT NULL,
+    DEPARTMENT_ID INTEGER NOT NULL,
+    SALARY DECIMAL(17,2),
+    INITIAL_DATE DATE,
+    END_DATE DATE,
+    STATUS CHAR(1) NOT NULL CHECK (STATUS IN ('A', 'I'))
+);
+
+ALTER TABLE EMPLOYEE
+    ADD CONSTRAINT PK_EMPLOYEE PRIMARY KEY (EMPLOYEE_ID);
+
+ALTER TABLE EMPLOYEE ADD FOREIGN KEY (DEPARTMENT_ID)
+REFERENCES DEPARTMENT(DEPARTMENT_ID);
+
+
+----- INSERT DATA -----
+INSERT INTO DEPARTMENT (DEPARTMENT_NAME, STATUS) VALUES ('Sistemas', 'A'),
+                                                        ('Contabilidad', 'A'),
+                                                        ('RRHH', 'I'),
+                                                        ('People', 'A');
+
+INSERT INTO EMPLOYEE(EMPLOYEE_NAME, EMPLOYEE_LAST_NAME, AGE, DEPARTMENT_ID, SALARY, INITIAL_DATE, END_DATE, STATUS)
+VALUES ('Luis', 'Perez', 22, 1, 500,'2021-02-10', null, 'A'),
+       ('Maria', 'Gonzales', 25, 1,250,'2020-03-11', null, 'A'),
+       ('Maria', 'Gonzales', 25, 1,650,'2020-03-11', null, 'A'),
+       ('Pedro', 'Gomez', 30, 2, NULL,'2020-03-11', '2024-05-20', 'I'),
+       ('Jose', 'Lopez', 20, 2, NULL,NULL, null, 'A');
+
+
