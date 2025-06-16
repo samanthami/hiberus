@@ -101,14 +101,4 @@ La base de datos H2 está configurada para ejecutarse en memoria durante el desa
     /models     # Interfaces y modelos de datos
 ```
 
----
 
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, sigue los pasos descritos en la guía de contribuciones antes de enviar un Pull Request.
-
----
-
-## Licencia
-
-Este proyecto está bajo la licencia \[NOMBRE DE LA LICENCIA]. Por favor, consulta el archivo LICENSE para más detalles.
